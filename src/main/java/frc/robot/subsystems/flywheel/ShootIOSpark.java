@@ -13,28 +13,28 @@
 
 package frc.robot.subsystems.flywheel;
 
-import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
-public class FlywheelIOSim implements FlywheelIO {
-  private FlywheelSim sim = new FlywheelSim(DCMotor.getNEO(1), 1.5, 0.004);
+/**
+ * NOTE: To use the Spark Flex / NEO Vortex, replace all instances of "CANSparkMax" with
+ * "CANSparkFlex".
+ */
+public class ShootIOSpark implements FlywheelIO {
 
-  @Override
-  public void updateInputs(FlywheelIOInputs inputs) {
+  private final Spark leader = new Spark(0);
 
-    sim.update(0.02);
+  public ShootIOSpark() {
   }
 
-  @Override
-  public void set(double speed) {
-    sim.set(speed);
+
+  public void setSpeed(double speed) {
+    leader.set(speed);
   }
+
 
   @Override
   public void stop() {
-    set(0.0);
+    leader.stopMotor();
   }
+
 }

@@ -59,7 +59,7 @@ public class Flywheel extends SubsystemBase {
                 null,
                 null,
                 (state) -> Logger.recordOutput("Flywheel/SysIdState", state.toString())),
-            new SysIdRoutine.Mechanism((voltage) -> runVolts(voltage.in(Volts)), null, this));
+            new SysIdRoutine.Mechanism((voltage) -> runSpeed(voltage.in(Volts)), null, this));
   }
 
   @Override
@@ -69,8 +69,8 @@ public class Flywheel extends SubsystemBase {
   }
 
   /** Run open loop at the specified voltage. */
-  public void runVolts(double volts) {
-    io.setVoltage(volts);
+  public void runSpeed(double speed) {
+    io.set(speed);
   }
 
   /** Run closed loop at the specified velocity. */
