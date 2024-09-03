@@ -21,7 +21,7 @@ public final class Constants {
         public static final int ID_RIGHT_PRIMARY = 20;  
         public static final int ID_RIGHT_SECONDARY = 21;  
 
-        //Speed for the motors
+        //Speed for the drivebase
         public static final Double DRIVE_SPEED = 0.6;
         
 
@@ -45,13 +45,11 @@ public final class Constants {
     
 
         //Shooter
-        public static final int FLYWHEEL_LEFT = 0;
-        public static final int FLYWHEEL_RIGHT = 1;
-        public static final int ELEVATION = 2;
-        
-        public static final double FLYWHEEL_SPEED = .5;
-        public static final double ELEVATION_SPEED = 0.5;
+        public static final int ID_SHOOT_MOTOR = 31;
 		public static final int RIGHT_TRIGGER = 3;
-    
+
+        //Index
+        public static final int ID_INDEX_MOTOR = 32;
+
 }
 
