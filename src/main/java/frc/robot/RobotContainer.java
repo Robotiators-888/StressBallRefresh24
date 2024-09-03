@@ -9,6 +9,8 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.VideoMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.tankDriveCMD;
@@ -46,24 +48,11 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureButtonBindings();
-    // CameraServer.startAutomaticCapture()
-    // .setVideoMode(new VideoMode(VideoMode.pixelFormat.kMJPEG, 416, 240, 60));
-    // // // This is creating a CMD that will be called and excuted as the robot is
-    // enabled we do this by making a defualt command
-    // This gets the requirements and the cmd construtor from eariler This gets the
-    // left stick so it controls the left motors This gets the right stick that
-    // controls the right motors this is the speed
-    driveSubsystem.setDefaultCommand(new tankDriveCMD(driveSubsystem, () -> -joystick.getRawAxis(Constants.RIGHT_AXIS),
-        () -> -joystick.getRawAxis(Constants.LEFT_AXIS), () -> Constants.speed));
-    // shooterSubsystem.setDefaultCommand(new FlywheelCMD(shooterSubsystem, () ->
-    // joystick.getRawAxis((Constants.RIGHT_TRIGGER))-0.5));
+  
+    driveSubsystem.setDefaultCommand(new RunCommand(driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),joystick.getRawAxis(Constants.LEFT_AXIS),Constants.DRIVE_SPEED),driveSubsystem));
   }
 
   private void configureButtonBindings() {
-
-    // Creates the A button to spin flywheels
-    // aButton.whileHeld(new FlywheelCMD(shooterSubsystem, () ->
-    // joystick.getRawButton(Constants.A_BUTTON)));
 
     rightTrigger.whileTrue(new FlywheelCMD(shooterSubsystem));
 
@@ -74,7 +63,6 @@ public class RobotContainer {
     rBumper.whileTrue(new ElevationDownCMD(shooterSubsystem, () -> joystick.getPOV(Constants.DAPD_DOWN)));
 
     // Creates B button to fire the piston when pressed
-    //bButton.toggleOnTrue();
     bButton.onTrue(new PistonCMD(pneumaticsSubsystem));
     
   }

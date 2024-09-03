@@ -1,9 +1,8 @@
-
 package frc.robot.subsystems;
 
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -11,11 +10,11 @@ import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
   // create motor controller objects
-  private WPI_VictorSPX leftPrimary = new  WPI_VictorSPX(Constants.ID_LEFT_PRIMARY);
-  private WPI_VictorSPX leftSecondary = new WPI_VictorSPX(Constants.ID_LEFT_SECONDARY);
-  private WPI_VictorSPX rightPrimary = new WPI_VictorSPX(Constants.ID_RIGHT_PRIMARY);
-  private WPI_VictorSPX rightSecondary = new WPI_VictorSPX(Constants.ID_RIGHT_SECONDARY);
-  private DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
+  private static CANSparkMax leftPrimary = new CANSparkMax(Constants.ID_LEFT_PRIMARY, MotorType.kBrushless);
+  private static CANSparkMax rightPrimary = new CANSparkMax(Constants.ID_RIGHT_PRIMARY, MotorType.kBrushless);
+  private static CANSparkMax leftSecondary = new CANSparkMax(Constants.ID_LEFT_SECONDARY, MotorType.kBrushless);
+  private static CANSparkMax rightSecondary = new CANSparkMax(Constants.ID_RIGHT_SECONDARY, MotorType.kBrushless);
+  public static DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
   // create a speed controller group for each side
 
   // create a drive train group with the speed controller groups
@@ -23,11 +22,13 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DriveSubsystem() {
     // set one motor on each side inverted so we dont destroy the gearbox
-    
-    leftSecondary.follow(leftPrimary);
-    rightSecondary.follow(rightPrimary);
+
     // leftSecondary.setInverted(true);
     // rightSecondary.setInverted(true);
+
+    // configure following of primary motors by secondary motors
+    leftSecondary.follow(leftPrimary);
+    rightSecondary.follow(rightPrimary);
   }
 
   public void periodic() {
@@ -39,9 +40,9 @@ public class DriveSubsystem extends SubsystemBase {
    * 
    * @param leftSpeed  Speed of the left drivetrain
    * @param rightSpeed Speed of right drivetrain
-   * @param Speed      set a precentage of max speed the robot can use
+   * @param driveSpeed Set a percentage of max speed the robot can use
    */
-  public void setMotors(double leftSpeed, double rightSpeed, double Speed) {
-    driveTrain.arcadeDrive(leftSpeed * 0.6, rightSpeed * -0.6);
+  public void setMotors(double leftSpeed, double rightSpeed, double driveSpeed) {
+    driveTrain.arcadeDrive(leftSpeed * driveSpeed, rightSpeed * -driveSpeed);
   }
 }
