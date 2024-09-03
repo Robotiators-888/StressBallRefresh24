@@ -2,10 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -37,10 +39,14 @@ public class RobotContainer {
                 () -> driveSubsystem.setMotors(joystick.getRawAxis(Constants.RIGHT_AXIS),
                     joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                 driveSubsystem));
+
   }
 
-  private void configureButtonBindings() {
 
+
+  private void configureButtonBindings() {
+    rightTrigger.whileTrue(new RunCommand(() -> IndexSubsystem.ShootFullSpeed()));
+    rightTrigger.whileTrue(new RunCommand(()->ShooterSubsystem.)))
   }
 
   public Command getAutonomousCommand() {

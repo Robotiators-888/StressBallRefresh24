@@ -52,5 +52,9 @@ public final class Constants {
         public static final int ID_INDEX_MOTOR = 0;
         public static final int ID_FEED_MOTOR = 1;
 
+        //Index Shooting
+        public static final double FULL_SPEED_INDEX = 0;
+        public static final double FULL_SPEED_FEED = 0;
+
 }
 
