@@ -49,7 +49,8 @@ public final class Constants {
 		public static final int RIGHT_TRIGGER = 3;
 
         //Index
-        public static final int ID_INDEX_MOTOR = 32;
+        public static final int ID_INDEX_MOTOR = 0;
+        public static final int ID_FEED_MOTOR = 1;
 
 }
 
