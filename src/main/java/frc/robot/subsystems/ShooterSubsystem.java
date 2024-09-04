@@ -2,17 +2,18 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class ShooterSubsystem extends SubsystemBase {
-   Spark Shoot = new Spark(Constants.ID_SHOOT_MOTOR);
+   static CANSparkMax Shoot = new CANSparkMax(Constants.ID_SHOOT_MOTOR, MotorType.kBrushless);
 
    public void periodic() {
 
    }
 
-   public void flywheelSpeed() {
-
+   public static void flywheelSpeed(double speed) {
+      Shoot.set(speed);
    }
 
    public void flywheelEnd() {
