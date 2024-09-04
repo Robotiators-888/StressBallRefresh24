@@ -10,10 +10,10 @@ import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
   // create motor controller objects
-  private static CANSparkMax leftPrimary = new CANSparkMax(Constants.ID_LEFT_PRIMARY, MotorType.kBrushless);
-  private static CANSparkMax rightPrimary = new CANSparkMax(Constants.ID_RIGHT_PRIMARY, MotorType.kBrushless);
-  private static CANSparkMax leftSecondary = new CANSparkMax(Constants.ID_LEFT_SECONDARY, MotorType.kBrushless);
-  private static CANSparkMax rightSecondary = new CANSparkMax(Constants.ID_RIGHT_SECONDARY, MotorType.kBrushless);
+  private static CANSparkMax leftPrimary = new CANSparkMax(Constants.CANID_LEFT_PRIMARY, MotorType.kBrushless);
+  private static CANSparkMax rightPrimary = new CANSparkMax(Constants.CANID_RIGHT_PRIMARY, MotorType.kBrushless);
+  private static CANSparkMax leftSecondary = new CANSparkMax(Constants.CANID_LEFT_SECONDARY, MotorType.kBrushless);
+  private static CANSparkMax rightSecondary = new CANSparkMax(Constants.CANID_RIGHT_SECONDARY, MotorType.kBrushless);
   public static DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
   // create a speed controller group for each side
 

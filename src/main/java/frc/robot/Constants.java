@@ -16,10 +16,10 @@ package frc.robot;
 public final class Constants {
 
         //Drive Motors
-        public static final int ID_LEFT_PRIMARY = 22;  
-        public static final int ID_LEFT_SECONDARY = 23;  
-        public static final int ID_RIGHT_PRIMARY = 20;  
-        public static final int ID_RIGHT_SECONDARY = 21;  
+        public static final int CANID_LEFT_PRIMARY = 22;  
+        public static final int CANID_LEFT_SECONDARY = 23;  
+        public static final int CANID_RIGHT_PRIMARY = 20;  
+        public static final int CANID_RIGHT_SECONDARY = 21;  
 
         //Speed for the drivebase
         public static final Double DRIVE_SPEED = 0.6;
@@ -45,12 +45,13 @@ public final class Constants {
     
 
         //Shooter
-        public static final int ID_SHOOT_MOTOR = 31;
+        public static final int CANID_SHOOT_MOTOR = 31;
 		public static final int RIGHT_TRIGGER = 3;
 
         //Index
-        public static final int ID_INDEX_MOTOR = 0;
-        public static final int ID_FEED_MOTOR = 1;
+        public static final int DIO_INDEX_MOTOR = 0;
+        public static final int DIO_FEED_MOTOR = 1;
+        public static final int DIO_BANNER_INPUT = 0;
 
         //Index Shooting
         public static final double FULL_SPEED_INDEX = 0;
