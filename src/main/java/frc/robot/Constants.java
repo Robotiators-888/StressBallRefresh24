@@ -47,6 +47,7 @@ public final class Constants {
         //Shooter
         public static final int CANID_SHOOT_MOTOR = 31;
 		public static final int RIGHT_TRIGGER = 3;
+        public static final double FLYWHEELSHOOTSPEED = .7;
 
         //Index
         public static final int DIO_INDEX_MOTOR = 0;
