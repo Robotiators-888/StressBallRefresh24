@@ -44,11 +44,13 @@ public class RobotContainer {
                     joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                 driveSubsystem));
 
-    rightTrigger.whileTrue(new ParallelCommandGroup(
-        new RunCommand(() -> IndexSubsystem.indexFullSpeed(), indexSubsystem),
-        new RunCommand(() -> ShooterSubsystem.flywheelSpeed(0), shooterSubsystem)));
+    rightTrigger
+        .whileTrue(new ParallelCommandGroup(
+            new RunCommand(() -> IndexSubsystem.indexFullSpeed(), indexSubsystem),
+            new RunCommand(() -> ShooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED), shooterSubsystem)))
+        .onFalse(new InstantCommand(() -> IndexSubsystem.stopAll()));
 
-    leftTrigger.onTrue(new RunCommand(() -> IndexSubsystem.setIndexSpeed(0), indexSubsystem)
+    leftTrigger.onTrue(new RunCommand(() -> IndexSubsystem.indexOneBall(), indexSubsystem)
         .until(() -> IndexSubsystem.indexBannerSensor())
         .andThen(new InstantCommand(() -> IndexSubsystem.stopAll())));
 

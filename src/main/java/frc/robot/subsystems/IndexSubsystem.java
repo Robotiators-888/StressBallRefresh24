@@ -24,8 +24,8 @@ public class IndexSubsystem extends SubsystemBase{
     }
 
     public static void indexOneBall(){         
-        setFeedSpeed(Constants.FULL_SPEED_FEED);
-        setIndexSpeed(Constants.FULL_SPEED_INDEX);
+        setFeedSpeed(Constants.SINGLEBALL_SPEED_FEED);
+        setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX);
     }
 
     public static void stopAll(){
