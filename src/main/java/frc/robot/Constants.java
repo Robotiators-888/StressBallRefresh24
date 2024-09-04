@@ -59,4 +59,3 @@ public final class Constants {
         public static final double FULL_SPEED_FEED = 0;
 
 }
-

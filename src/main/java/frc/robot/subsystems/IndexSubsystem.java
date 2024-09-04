@@ -10,7 +10,6 @@ public class IndexSubsystem extends SubsystemBase{
     private static Spark Index = new Spark(Constants.DIO_INDEX_MOTOR);
     private static Spark Feed = new Spark(Constants.DIO_FEED_MOTOR);
     public static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
-    public static BooleanSupplier indexBannerSensor;
     public static void setIndexSpeed(double speed){
         Index.set(speed);
     }
@@ -34,7 +33,7 @@ public class IndexSubsystem extends SubsystemBase{
         setIndexSpeed(0);
     }
     
-    public boolean indexBannerSensor(){
+    public static boolean indexBannerSensor(){
         return BannerSensor.get();
     }
 

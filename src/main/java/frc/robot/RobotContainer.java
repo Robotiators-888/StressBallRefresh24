@@ -49,10 +49,12 @@ public class RobotContainer {
         new RunCommand(() -> ShooterSubsystem.flywheelSpeed(0), shooterSubsystem)));
 
     leftTrigger.onTrue(new RunCommand(() -> IndexSubsystem.setIndexSpeed(0), indexSubsystem)
-        .until(IndexSubsystem.indexBannerSensor)
+        .until(() -> IndexSubsystem.indexBannerSensor())
         .andThen(new InstantCommand(() -> IndexSubsystem.stopAll())));
 
-    aButton.toggleOnTrue(Commands.startEnd(()->ShooterSubsystem.flywheelSpeed(0),()->ShooterSubsystem.flywheelSpeed(0), shooterSubsystem));
+    aButton.toggleOnTrue(
+        Commands.startEnd(() -> ShooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
+            () -> ShooterSubsystem.flywheelSpeed(0), shooterSubsystem));
 
 
 
@@ -61,7 +63,6 @@ public class RobotContainer {
   private void configureButtonBindings() {}
 
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
     return null;
   }
 }
