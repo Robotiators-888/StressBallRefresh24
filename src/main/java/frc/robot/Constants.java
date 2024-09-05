@@ -53,7 +53,7 @@ public final class Constants {
     // Index
     public static final int DIO_INDEX_MOTOR = 0;
     public static final int DIO_FEED_MOTOR = 1;
-    public static final int DIO_BANNER_INPUT = 0;
+    public static final int DIO_BANNER_INPUT = 2;
 
     // Index Shooting
     public static final double FULL_SPEED_INDEX = 0;
