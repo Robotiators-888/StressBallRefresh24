@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
@@ -10,7 +11,11 @@ public class ShooterSubsystem extends SubsystemBase {
       
    ;
    public void periodic() {
+      SmartDashboard.putNumber("FlywheelRPM", flywheelRPM());
+   }
 
+   public static double flywheelRPM(){
+      return FlywheelMotor.getEncoder().getVelocity();
    }
 
    public static void flywheelSpeed(double speed) {
