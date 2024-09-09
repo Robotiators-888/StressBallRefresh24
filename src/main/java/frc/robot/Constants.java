@@ -56,9 +56,9 @@ public final class Constants {
     public static final int DIO_BANNER_INPUT = 2;
 
     // Index Shooting
-    public static final double FULL_SPEED_INDEX = 0;
-    public static final double FULL_SPEED_FEED = 0;
-    public static final double SINGLEBALL_SPEED_INDEX = 0;
-    public static final double SINGLEBALL_SPEED_FEED = 0;
+    public static final double FULL_SPEED_INDEX = .2;
+    public static final double FULL_SPEED_FEED = .2;
+    public static final double SINGLEBALL_SPEED_INDEX = .1;
+    public static final double SINGLEBALL_SPEED_FEED = .1;
 
 }
