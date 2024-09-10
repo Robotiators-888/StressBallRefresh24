@@ -14,7 +14,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static CANSparkMax rightPrimary = new CANSparkMax(Constants.CANID_RIGHT_PRIMARY, MotorType.kBrushless);
   private static CANSparkMax leftSecondary = new CANSparkMax(Constants.CANID_LEFT_SECONDARY, MotorType.kBrushless);
   private static CANSparkMax rightSecondary = new CANSparkMax(Constants.CANID_RIGHT_SECONDARY, MotorType.kBrushless);
-  public static DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
+  private static DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
   // create a speed controller group for each side
 
   // create a drive train group with the speed controller groups

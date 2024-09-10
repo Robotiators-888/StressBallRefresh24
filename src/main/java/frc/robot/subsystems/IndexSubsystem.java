@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IndexSubsystem extends SubsystemBase{
     private static Spark Index = new Spark(Constants.DIO_INDEX_MOTOR);
     private static Spark Feed = new Spark(Constants.DIO_FEED_MOTOR);
-    public static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
+    private static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
     
     public static void setIndexSpeed(double speed){
         Index.set(speed);

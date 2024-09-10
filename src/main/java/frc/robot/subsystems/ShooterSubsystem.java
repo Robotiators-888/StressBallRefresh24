@@ -7,7 +7,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class ShooterSubsystem extends SubsystemBase {
-   static CANSparkMax FlywheelMotor = new CANSparkMax(Constants.CANID_SHOOT_MOTOR,MotorType.kBrushless);
+   private static CANSparkMax FlywheelMotor = new CANSparkMax(Constants.CANID_SHOOT_MOTOR,MotorType.kBrushless);
       
    ;
    public void periodic() {
