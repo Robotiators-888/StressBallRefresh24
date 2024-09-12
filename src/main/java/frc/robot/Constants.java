@@ -61,4 +61,7 @@ public final class Constants {
     public static final double SINGLEBALL_SPEED_INDEX = .1;
     public static final double SINGLEBALL_SPEED_SPIN = .1;
 
+    // Hood
+    public static final int CANID_HOOD_MOTOR = 32;
+
 }
