@@ -7,29 +7,29 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexSubsystem extends SubsystemBase{
     private static Spark Index = new Spark(Constants.DIO_INDEX_MOTOR);
-    private static Spark Feed = new Spark(Constants.DIO_FEED_MOTOR);
+    private static Spark Spin = new Spark(Constants.DIO_FEED_MOTOR);
     private static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
     
     public static void setIndexSpeed(double speed){
         Index.set(speed);
     }
     
-    public static void setFeedSpeed(double speed){
-        Feed.set(speed);
+    public static void setSpinSpeed(double speed){
+        Spin.set(speed);
     }
 
     public static void indexFullSpeed() {
-        setFeedSpeed(Constants.FULL_SPEED_FEED);
+        setSpinSpeed(Constants.FULL_SPEED_SPIN);
         setIndexSpeed(Constants.FULL_SPEED_INDEX);
     }
 
     public static void indexOneBall(){         
-        setFeedSpeed(Constants.SINGLEBALL_SPEED_FEED);
+        setSpinSpeed(Constants.SINGLEBALL_SPEED_SPIN);
         setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX);
     }
 
     public static void stopAll(){
-        setFeedSpeed(0);
+        setSpinSpeed(0);
         setIndexSpeed(0);
     }
     

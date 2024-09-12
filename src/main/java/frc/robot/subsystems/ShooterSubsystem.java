@@ -8,8 +8,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class ShooterSubsystem extends SubsystemBase {
    private static CANSparkMax FlywheelMotor = new CANSparkMax(Constants.CANID_SHOOT_MOTOR,MotorType.kBrushless);
-      
-   ;
+
+   
    public void periodic() {
       SmartDashboard.putNumber("FlywheelRPM", flywheelRPM());
    }
