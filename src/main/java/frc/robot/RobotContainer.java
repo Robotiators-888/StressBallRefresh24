@@ -27,8 +27,11 @@ public class RobotContainer {
         public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
         public final JoystickButton aButton = new JoystickButton(joystick, 1);
         public final JoystickButton bButton = new JoystickButton(joystick, 2);
-        public final JoystickButton rBumper = new JoystickButton(joystick, 6);
+        public final JoystickButton xButton = new JoystickButton(joystick, 3);
+        public final JoystickButton yButton = new JoystickButton(joystick, 4);
         public final JoystickButton lBumper = new JoystickButton(joystick, 5);
+        public final JoystickButton rBumper = new JoystickButton(joystick, 6);
+        public final JoystickButton startButton = new JoystickButton(joystick, 7);
 
         Trigger rightTrigger = new Trigger(() -> (joystick.getRawAxis(3) > 0.5));
         Trigger leftTrigger = new Trigger(() -> (joystick.getRawAxis(4) > 0.5));
@@ -55,7 +58,7 @@ public class RobotContainer {
                                                 shooterSubsystem)))
                                 .onFalse(new InstantCommand(() -> indexSubsystem.stopAll()));
 
-                leftTrigger.onTrue(
+                leftTrigger.whileTrue(
                                 new RunCommand(() -> indexSubsystem.indexOneBall(), indexSubsystem)
                                                 .until(() -> indexSubsystem.indexBannerSensor())
                                                 .andThen(new SequentialCommandGroup(new InstantCommand(
