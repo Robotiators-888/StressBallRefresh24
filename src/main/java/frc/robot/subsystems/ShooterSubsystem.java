@@ -18,7 +18,7 @@ public class ShooterSubsystem extends SubsystemBase {
       return FlywheelMotor.getEncoder().getVelocity();
    }
 
-   public static void flywheelSpeed(double speed) {
+   public void flywheelSpeed(double speed) {
       FlywheelMotor.set(speed);
    }
 }

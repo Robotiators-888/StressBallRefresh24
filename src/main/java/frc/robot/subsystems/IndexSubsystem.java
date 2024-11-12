@@ -10,7 +10,7 @@ public class IndexSubsystem extends SubsystemBase{
     private static Spark Spin = new Spark(Constants.DIO_FEED_MOTOR);
     private static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
     
-    public static void setIndexSpeed(double speed){
+    public void setIndexSpeed(double speed){
         Index.set(speed);
     }
     
@@ -18,22 +18,22 @@ public class IndexSubsystem extends SubsystemBase{
         Spin.set(speed);
     }
 
-    public static void indexFullSpeed() {
+    public void indexFullSpeed() {
         setSpinSpeed(Constants.FULL_SPEED_SPIN);
         setIndexSpeed(Constants.FULL_SPEED_INDEX);
     }
 
-    public static void indexOneBall(){         
+    public void indexOneBall(){         
         setSpinSpeed(Constants.SINGLEBALL_SPEED_SPIN);
         setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX);
     }
 
-    public static void stopAll(){
+    public void stopAll(){
         setSpinSpeed(0);
         setIndexSpeed(0);
     }
     
-    public static boolean indexBannerSensor(){
+    public boolean indexBannerSensor(){
         return BannerSensor.get();
     }
 
