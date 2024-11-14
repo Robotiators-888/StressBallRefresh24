@@ -1,24 +1,22 @@
 package frc.robot.subsystems;
 
 
-import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.revrobotics.CANSparkMax;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
   // create motor controller objects
-  private static CANSparkMax leftPrimary = new CANSparkMax(Constants.CANID_LEFT_PRIMARY, MotorType.kBrushless);
-  private static CANSparkMax rightPrimary = new CANSparkMax(Constants.CANID_RIGHT_PRIMARY, MotorType.kBrushless);
-  private static CANSparkMax leftSecondary = new CANSparkMax(Constants.CANID_LEFT_SECONDARY, MotorType.kBrushless);
-  private static CANSparkMax rightSecondary = new CANSparkMax(Constants.CANID_RIGHT_SECONDARY, MotorType.kBrushless);
+  private static WPI_TalonSRX leftPrimary = new WPI_TalonSRX(Constants.CANID_LEFT_PRIMARY);
+  private static WPI_TalonSRX rightPrimary = new WPI_TalonSRX(Constants.CANID_RIGHT_PRIMARY);
+  private static WPI_TalonSRX leftSecondary = new WPI_TalonSRX(Constants.CANID_LEFT_SECONDARY);
+  private static WPI_TalonSRX rightSecondary = new WPI_TalonSRX(Constants.CANID_RIGHT_SECONDARY);
   private static DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
   // create a speed controller group for each side
 
   // create a drive train group with the speed controller groups
- 
+
 
   public DriveSubsystem() {
     // set one motor on each side inverted so we dont destroy the gearbox
@@ -38,7 +36,7 @@ public class DriveSubsystem extends SubsystemBase {
   /**
    * Sets speed of the motors in the drivetrain
    * 
-   * @param leftSpeed  Speed of the left drivetrain
+   * @param leftSpeed Speed of the left drivetrain
    * @param rightSpeed Speed of right drivetrain
    * @param driveSpeed Set a percentage of max speed the robot can use
    */
