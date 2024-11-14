@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -50,27 +49,34 @@ public class RobotContainer {
 
         private void configureButtonBindings() {
 
-                rightTrigger.whileTrue(new ParallelCommandGroup(
-                                new RunCommand(() -> indexSubsystem.indexFullSpeed(),
-                                                indexSubsystem),
-                                new RunCommand(() -> shooterSubsystem
+                rightTrigger.whileTrue(new SequentialCommandGroup(
+                        new RunCommand(() -> shooterSubsystem
                                                 .flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
-                                                shooterSubsystem)))
+                                                shooterSubsystem)
+                                                .until(() -> shooterSubsystem.atdesiredRPM())
+                                                .andThen(new RunCommand(() -> indexSubsystem.indexFullSpeed(),
+                                                                indexSubsystem))))
                                 .onFalse(new InstantCommand(() -> indexSubsystem.stopAll()));
 
                 leftTrigger.whileTrue(
                                 new RunCommand(() -> indexSubsystem.indexOneBall(), indexSubsystem)
                                                 .until(() -> indexSubsystem.indexBannerSensor())
-                                                .andThen(new SequentialCommandGroup(new InstantCommand(
-                                                                () -> indexSubsystem.setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
+                                                .andThen(new SequentialCommandGroup(
+                                                                new InstantCommand(
+                                                                                () -> indexSubsystem
+                                                                                                .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
                                                                 new WaitCommand(.3),
-                                                                 new InstantCommand(()-> indexSubsystem.stopAll()))));
+                                                                new InstantCommand(
+                                                                                () -> indexSubsystem
+                                                                                                .stopAll()))));
 
                 aButton.toggleOnTrue(Commands.startEnd(
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
                                 () -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
-        }
 
+                rBumper.onTrue(new InstantCommand(() -> hoodSubsystem.hoodUp()));
+                lBumper.onTrue(new InstantCommand(() -> hoodSubsystem.hoodDown()));
+        }
 
 
         public Command getAutonomousCommand() {
