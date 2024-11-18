@@ -51,8 +51,8 @@ public final class Constants {
     public static final double FLYWHEELSHOOTSPEED = .7;
 
     // Index
-    public static final int DIO_INDEX_MOTOR = 0;
-    public static final int DIO_FEED_MOTOR = 1;
+    public static final int PWM_INDEX_MOTOR = 0;
+    public static final int PWM_FEED_MOTOR = 1;
     public static final int DIO_BANNER_INPUT = 2;
 
     // Index Shooting

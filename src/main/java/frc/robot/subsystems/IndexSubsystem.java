@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexSubsystem extends SubsystemBase{
-    private static Spark Index = new Spark(Constants.DIO_INDEX_MOTOR);
-    private static Spark Spin = new Spark(Constants.DIO_FEED_MOTOR);
+    private static Spark Index = new Spark(Constants.PWM_INDEX_MOTOR);
+    private static Spark Spin = new Spark(Constants.PWM_FEED_MOTOR);
     private static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
     
     public void setIndexSpeed(double speed){
