@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.HoodSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -20,7 +19,6 @@ public class RobotContainer {
         private static final DriveSubsystem driveSubsystem = new DriveSubsystem();
         private static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
         private static final IndexSubsystem indexSubsystem = new IndexSubsystem();
-        private static final HoodSubsystem hoodSubsystem = new HoodSubsystem();
 
         // Creates joystick and joystick objects
         public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
@@ -42,19 +40,17 @@ public class RobotContainer {
                                 joystick.getRawAxis(Constants.RIGHT_AXIS),
                                 joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                                 driveSubsystem));
-
-
-
         }
 
         private void configureButtonBindings() {
 
-                rightTrigger.whileTrue(new SequentialCommandGroup(
-                        new RunCommand(() -> shooterSubsystem
-                                                .flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
-                                                shooterSubsystem)
+                rightTrigger.whileTrue(new SequentialCommandGroup(new RunCommand(
+                                () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
+                                shooterSubsystem)
                                                 .until(() -> shooterSubsystem.atdesiredRPM())
-                                                .andThen(new RunCommand(() -> indexSubsystem.indexFullSpeed(),
+                                                .andThen(new RunCommand(
+                                                                () -> indexSubsystem
+                                                                                .indexFullSpeed(),
                                                                 indexSubsystem))))
                                 .onFalse(new InstantCommand(() -> indexSubsystem.stopAll()));
 
@@ -74,8 +70,6 @@ public class RobotContainer {
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
                                 () -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
 
-                rBumper.onTrue(new InstantCommand(() -> hoodSubsystem.hoodUp()));
-                lBumper.onTrue(new InstantCommand(() -> hoodSubsystem.hoodDown()));
         }
 
 
