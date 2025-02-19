@@ -6,12 +6,15 @@
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean
+ * constants. This class should not be used for any other purpose. All constants
+ * should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
  * <p>
- * It is advised to statically import this class (or one of its inner classes) wherever the
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
@@ -24,7 +27,6 @@ public final class Constants {
 
     // Speed for the drivebase
     public static final Double DRIVE_SPEED = 1.0;
-
 
     // Joystick
     // this tells which port of the driver station the joystick is in
@@ -44,11 +46,11 @@ public final class Constants {
     // 6 = down on the d pad
     public static final int DAPD_DOWN = 6;
 
-
     // Shooter
     public static final int CANID_SHOOT_MOTOR = 24;
     public static final int RIGHT_TRIGGER = 3;
-    public static final double FLYWHEELSHOOTSPEED = .7;
+    public static final double FLYWHEELSHOOTSPEED = 0.6;
+    public static final int SHOOT_THRESHOLD_RPM = 750;
 
     // Index
     public static final int CANID_INDEX_MOTOR = 31;
@@ -56,11 +58,6 @@ public final class Constants {
 
     // Index Shooting
     public static final double FULL_SPEED_INDEX = .2;
-    public static final double FULL_SPEED_SPIN = .2;
-    public static final double SINGLEBALL_SPEED_INDEX = .1;
-    public static final double SINGLEBALL_SPEED_SPIN = .1;
-
-    // Hood
-    public static final int CANID_HOOD_MOTOR = 32;
+    public static final double SINGLEBALL_SPEED_INDEX = .175;
 
 }
