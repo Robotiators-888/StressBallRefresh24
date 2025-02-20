@@ -36,8 +36,8 @@ public class RobotContainer {
                 configureButtonBindings();
 
                 driveSubsystem.setDefaultCommand(new RunCommand(() -> driveSubsystem.setMotors(
-                                0 * joystick.getRawAxis(Constants.RIGHT_AXIS),
-                                0 * joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
+                                joystick.getRawAxis(Constants.RIGHT_AXIS),
+                                joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
                                 driveSubsystem));
                 shooterSubsystem.setDefaultCommand(
                                 new RunCommand(() -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
