@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.DriveSubsystem;
@@ -57,7 +58,15 @@ public class RobotContainer {
 
                 leftTrigger.onTrue(new SequentialCommandGroup(new RunCommand(
                                 () -> indexSubsystem.indexOneBall(), indexSubsystem)
-                                .until(() -> indexSubsystem.indexBannerSensor())));
+                                .until(() -> indexSubsystem.indexBannerSensor())
+                                .andThen(new SequentialCommandGroup(
+                                                                new InstantCommand(
+                                                                                () -> indexSubsystem
+                                                                                                .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
+                                                                new WaitCommand(.3),
+                                                                new InstantCommand(
+                                                                                () -> indexSubsystem
+                                                                                                .stopAll())))));
 
                 aButton.toggleOnTrue(Commands.startEnd(
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
