@@ -26,7 +26,7 @@ public final class Constants {
     public static final int CANID_RIGHT_SECONDARY = 21;
 
     // Speed for the drivebase
-    public static final Double DRIVE_SPEED = 1.0;
+    public static final Double DRIVE_SPEED = .6;
 
     // Joystick
     // this tells which port of the driver station the joystick is in
@@ -49,8 +49,8 @@ public final class Constants {
     // Shooter
     public static final int CANID_SHOOT_MOTOR = 24;
     public static final int RIGHT_TRIGGER = 3;
-    public static final double FLYWHEELSHOOTSPEED = 0.6;
-    public static final int SHOOT_THRESHOLD_RPM = 750;
+    public static final double FLYWHEELSHOOTSPEED = 0.8;
+    public static final int SHOOT_THRESHOLD_RPM = 1650;
 
     // Index
     public static final int CANID_INDEX_MOTOR = 31;

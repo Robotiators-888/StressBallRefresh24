@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -36,8 +37,9 @@ public class RobotContainer {
                 configureButtonBindings();
 
                 driveSubsystem.setDefaultCommand(new RunCommand(() -> driveSubsystem.setMotors(
-                                joystick.getRawAxis(Constants.RIGHT_AXIS),
-                                joystick.getRawAxis(Constants.LEFT_AXIS), Constants.DRIVE_SPEED),
+                                Math.pow(MathUtil.applyDeadband(joystick.getRawAxis(Constants.RIGHT_AXIS), .05),1),
+                                Math.pow(MathUtil.applyDeadband(joystick.getRawAxis(Constants.LEFT_AXIS), .05),1),
+                                Constants.DRIVE_SPEED),
                                 driveSubsystem));
                 shooterSubsystem.setDefaultCommand(
                                 new RunCommand(() -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
@@ -63,7 +65,7 @@ public class RobotContainer {
                                                                 new InstantCommand(
                                                                                 () -> indexSubsystem
                                                                                                 .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
-                                                                new WaitCommand(.3),
+                                                                new WaitCommand(.2),
                                                                 new InstantCommand(
                                                                                 () -> indexSubsystem
                                                                                                 .stopAll())))));
