@@ -58,17 +58,17 @@ public class RobotContainer {
                                                 indexSubsystem))))
                                 .onFalse(new InstantCommand(() -> indexSubsystem.stopAll(), indexSubsystem));
 
-                leftTrigger.onTrue(new SequentialCommandGroup(new RunCommand(
-                                () -> indexSubsystem.indexOneBall(), indexSubsystem)
-                                .until(() -> indexSubsystem.indexBannerSensor())
-                                .andThen(new SequentialCommandGroup(
-                                                                new InstantCommand(
-                                                                                () -> indexSubsystem
-                                                                                                .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
-                                                                new WaitCommand(.2),
-                                                                new InstantCommand(
-                                                                                () -> indexSubsystem
-                                                                                                .stopAll())))));
+                // leftTrigger.onTrue(new SequentialCommandGroup(new RunCommand(
+                //                 () -> indexSubsystem.indexOneBall(), indexSubsystem)
+                //                 .until(() -> indexSubsystem.indexBannerSensor())
+                //                 .andThen(new SequentialCommandGroup(
+                //                                                 new InstantCommand(
+                //                                                                 () -> indexSubsystem
+                //                                                                                 .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
+                //                                                 new WaitCommand(.2),
+                //                                                 new InstantCommand(
+                //                                                                 () -> indexSubsystem
+                //                                                                                 .stopAll())))));
 
                 aButton.toggleOnTrue(Commands.startEnd(
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),

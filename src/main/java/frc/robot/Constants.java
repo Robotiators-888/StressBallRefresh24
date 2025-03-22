@@ -49,7 +49,7 @@ public final class Constants {
     // Shooter
     public static final int CANID_SHOOT_MOTOR = 24;
     public static final int RIGHT_TRIGGER = 3;
-    public static final double FLYWHEELSHOOTSPEED = 0.8;
+    public static final double FLYWHEELSHOOTSPEED = -0.5;
     public static final int SHOOT_THRESHOLD_RPM = 1650;
 
     // Index
