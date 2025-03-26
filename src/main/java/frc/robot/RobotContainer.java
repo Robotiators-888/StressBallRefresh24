@@ -37,13 +37,15 @@ public class RobotContainer {
                 configureButtonBindings();
 
                 driveSubsystem.setDefaultCommand(new RunCommand(() -> driveSubsystem.setMotors(
-                                Math.pow(MathUtil.applyDeadband(joystick.getRawAxis(Constants.RIGHT_AXIS), .05),1),
-                                Math.pow(MathUtil.applyDeadband(joystick.getRawAxis(Constants.LEFT_AXIS), .05),1),
-                                Constants.DRIVE_SPEED),
-                                driveSubsystem));
-                shooterSubsystem.setDefaultCommand(
-                                new RunCommand(() -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
-                indexSubsystem.setDefaultCommand(new RunCommand(() -> indexSubsystem.stopAll(), indexSubsystem));
+                                Math.pow(MathUtil.applyDeadband(
+                                                joystick.getRawAxis(Constants.RIGHT_AXIS), .05), 1),
+                                Math.pow(MathUtil.applyDeadband(
+                                                joystick.getRawAxis(Constants.LEFT_AXIS), .05), 1),
+                                Constants.DRIVE_SPEED), driveSubsystem));
+                shooterSubsystem.setDefaultCommand(new RunCommand(
+                                () -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
+                indexSubsystem.setDefaultCommand(
+                                new RunCommand(() -> indexSubsystem.stopAll(), indexSubsystem));
         }
 
         private void configureButtonBindings() {
@@ -51,24 +53,29 @@ public class RobotContainer {
                 rightTrigger.whileTrue(new SequentialCommandGroup(new RunCommand(
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
                                 shooterSubsystem)
-                                .until(() -> shooterSubsystem.atdesiredRPM())
-                                .andThen(new RunCommand(
-                                                () -> indexSubsystem
-                                                                .indexFullSpeed(),
-                                                indexSubsystem))))
-                                .onFalse(new InstantCommand(() -> indexSubsystem.stopAll(), indexSubsystem));
+                                                .until(() -> shooterSubsystem.atdesiredRPM())
+                                                .andThen(new RunCommand(
+                                                                () -> indexSubsystem
+                                                                                .indexFullSpeed(),
+                                                                indexSubsystem))))
+                                .onFalse(new InstantCommand(() -> indexSubsystem.stopAll(),
+                                                indexSubsystem));
+                rightTrigger.onTrue(new SequentialCommandGroup(new InstantCommand(
+                                () -> indexSubsystem
+                                                .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX),
+                                indexSubsystem), new WaitCommand(.5)));
 
                 // leftTrigger.onTrue(new SequentialCommandGroup(new RunCommand(
-                //                 () -> indexSubsystem.indexOneBall(), indexSubsystem)
-                //                 .until(() -> indexSubsystem.indexBannerSensor())
-                //                 .andThen(new SequentialCommandGroup(
-                //                                                 new InstantCommand(
-                //                                                                 () -> indexSubsystem
-                //                                                                                 .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
-                //                                                 new WaitCommand(.2),
-                //                                                 new InstantCommand(
-                //                                                                 () -> indexSubsystem
-                //                                                                                 .stopAll())))));
+                // () -> indexSubsystem.indexOneBall(), indexSubsystem)
+                // .until(() -> indexSubsystem.indexBannerSensor())
+                // .andThen(new SequentialCommandGroup(
+                // new InstantCommand(
+                // () -> indexSubsystem
+                // .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX)),
+                // new WaitCommand(.2),
+                // new InstantCommand(
+                // () -> indexSubsystem
+                // .stopAll())))));
 
                 aButton.toggleOnTrue(Commands.startEnd(
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
