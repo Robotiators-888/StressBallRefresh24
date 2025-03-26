@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -40,7 +41,7 @@ public class RobotContainer {
                                 Math.pow(MathUtil.applyDeadband(
                                                 joystick.getRawAxis(Constants.RIGHT_AXIS), .05), 1),
                                 Math.pow(MathUtil.applyDeadband(
-                                                joystick.getRawAxis(Constants.LEFT_AXIS), .05), 1),
+                                                -joystick.getRawAxis(Constants.LEFT_AXIS), .05), 1),
                                 Constants.DRIVE_SPEED), driveSubsystem));
                 shooterSubsystem.setDefaultCommand(new RunCommand(
                                 () -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
@@ -60,12 +61,12 @@ public class RobotContainer {
                                                                 indexSubsystem))))
                                 .onFalse(new InstantCommand(() -> indexSubsystem.stopAll(),
                                                 indexSubsystem));
-                leftTrigger.whileTrue(new RunCommand(() -> indexSubsystem.setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX), indexSubsystem));
+                //leftTrigger.whileTrue(new RunCommand(() -> indexSubsystem.setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX), indexSubsystem));
                 
-                // leftTrigger.onTrue(new SequentialCommandGroup(new InstantCommand(
-                //                 () -> indexSubsystem
-                //                                 .setIndexSpeed(Constants.SINGLEBALL_SPEED_INDEX),
-                //                 indexSubsystem), new WaitCommand(.5)));
+                leftTrigger.onTrue(
+                                new SequentialCommandGroup(
+                                        new InstantCommand(() -> indexSubsystem.setIndexSpeed(Constants.SINGLEBALL_TIMED_SPEED_INDEX), indexSubsystem),
+                                        new WaitCommand(Constants.SINGLEBALL_TIME_INDEX)));
 
                 // leftTrigger.onTrue(new SequentialCommandGroup(new RunCommand(
                 // () -> indexSubsystem.indexOneBall(), indexSubsystem)

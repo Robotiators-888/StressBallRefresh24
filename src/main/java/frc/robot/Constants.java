@@ -59,5 +59,7 @@ public final class Constants {
     // Index Shooting
     public static final double FULL_SPEED_INDEX = .2;
     public static final double SINGLEBALL_SPEED_INDEX = .175;
+    public static final double SINGLEBALL_TIMED_SPEED_INDEX = .8;
+    public static final double SINGLEBALL_TIME_INDEX = .1;
 
 }
