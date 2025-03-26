@@ -66,7 +66,8 @@ public class RobotContainer {
                 leftTrigger.onTrue(
                                 new SequentialCommandGroup(
                                         new InstantCommand(() -> indexSubsystem.setIndexSpeed(Constants.SINGLEBALL_TIMED_SPEED_INDEX), indexSubsystem),
-                                        new WaitCommand(Constants.SINGLEBALL_TIME_INDEX)));
+                                        new WaitCommand(Constants.SINGLEBALL_TIME_INDEX),
+                                        new InstantCommand(() -> indexSubsystem.stopAll(),indexSubsystem)));
 
                 // leftTrigger.onTrue(new SequentialCommandGroup(new RunCommand(
                 // () -> indexSubsystem.indexOneBall(), indexSubsystem)
