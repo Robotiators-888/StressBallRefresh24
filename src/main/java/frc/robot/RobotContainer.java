@@ -1,7 +1,10 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
+
+import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -20,6 +23,7 @@ public class RobotContainer {
         private static final DriveSubsystem driveSubsystem = new DriveSubsystem();
         private static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
         private static final IndexSubsystem indexSubsystem = new IndexSubsystem();
+        private final SendableChooser<Command> autoChooser;
 
         // Creates joystick and joystick objects
         public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
@@ -47,6 +51,7 @@ public class RobotContainer {
                                 () -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
                 indexSubsystem.setDefaultCommand(
                                 new RunCommand(() -> indexSubsystem.stopAll(), indexSubsystem));
+                autoChooser = AutoBuilder.buildAutoChooser();
         }
 
         private void configureButtonBindings() {
@@ -88,6 +93,6 @@ public class RobotContainer {
         }
 
         public Command getAutonomousCommand() {
-                return null;
+                return autoChooser.getSelected();
         }
 }
