@@ -7,8 +7,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexSubsystem extends SubsystemBase{
-    private static WPI_TalonSRX Index = new WPI_TalonSRX(Constants.CANID_INDEX_MOTOR);
-    private static DigitalInput BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
+    private static IndexSubsystem INSTANCE = null;
+    private WPI_TalonSRX Index;
+    private DigitalInput BannerSensor;
     
     public void setIndexSpeed(double speed){
         Index.set(speed);
@@ -35,5 +36,18 @@ public class IndexSubsystem extends SubsystemBase{
         SmartDashboard.putBoolean("BannerSensor", indexBannerSensor());
 
     }
- 
+    
+    public static IndexSubsystem getInstance () {
+        if (INSTANCE==null) {
+           INSTANCE = new IndexSubsystem();
+           return INSTANCE;
+        }
+        else {
+           return INSTANCE;
+        }
+     }
+     private IndexSubsystem () {
+        BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
+        Index  = new WPI_TalonSRX(Constants.CANID_INDEX_MOTOR);
+     }
 }

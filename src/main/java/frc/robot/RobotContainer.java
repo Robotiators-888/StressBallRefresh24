@@ -18,12 +18,14 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
+
 public class RobotContainer {
         // The robot's subsystems are defined here...
-        private static final DriveSubsystem driveSubsystem = new DriveSubsystem();
-        private static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-        private static final IndexSubsystem indexSubsystem = new IndexSubsystem();
-        private final SendableChooser<Command> autoChooser;
+        private static final DriveSubsystem driveSubsystem = DriveSubsystem.getInstance();
+        private static final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance();
+        private static final IndexSubsystem indexSubsystem = IndexSubsystem.getInstance();
+        //private final SendableChooser<Command> autoChooser;
+
 
         // Creates joystick and joystick objects
         public final Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
@@ -34,6 +36,8 @@ public class RobotContainer {
         public final JoystickButton lBumper = new JoystickButton(joystick, 5);
         public final JoystickButton rBumper = new JoystickButton(joystick, 6);
         public final JoystickButton startButton = new JoystickButton(joystick, 7);
+        
+        public double CurrentSpeed = Constants.DRIVE_SPEED;
 
         Trigger rightTrigger = new Trigger(() -> (joystick.getRawAxis(3) > 0.5));
         Trigger leftTrigger = new Trigger(() -> (joystick.getRawAxis(2) > 0.5));
@@ -51,7 +55,7 @@ public class RobotContainer {
                                 () -> shooterSubsystem.flywheelSpeed(0), shooterSubsystem));
                 indexSubsystem.setDefaultCommand(
                                 new RunCommand(() -> indexSubsystem.stopAll(), indexSubsystem));
-                autoChooser = AutoBuilder.buildAutoChooser();
+                //autoChooser = AutoBuilder.buildAutoChooser();
         }
 
         private void configureButtonBindings() {
@@ -85,6 +89,9 @@ public class RobotContainer {
                 // new InstantCommand(
                 // () -> indexSubsystem
                 // .stopAll())))));
+                startButton.toggleOnTrue(
+                        new InstantCommand(() -> toggleSpeed())
+                );
 
                 aButton.toggleOnTrue(Commands.startEnd(
                                 () -> shooterSubsystem.flywheelSpeed(Constants.FLYWHEELSHOOTSPEED),
@@ -92,7 +99,12 @@ public class RobotContainer {
 
         }
 
+        void toggleSpeed() {
+                if (CurrentSpeed == Constants.DRIVE_SPEED) { CurrentSpeed = Constants.SAFE_DRIVE_SPEED; } else { CurrentSpeed = Constants.SAFE_DRIVE_SPEED;} 
+        }
+
         public Command getAutonomousCommand() {
-                return autoChooser.getSelected();
+                // return autoChooser.getSelected();
+                return new RunCommand(() -> driveSubsystem.setMotors(1,1,Constants.DRIVE_SPEED),driveSubsystem);
         }
 }

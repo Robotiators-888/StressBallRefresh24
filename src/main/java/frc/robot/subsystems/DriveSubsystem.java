@@ -7,27 +7,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
+  private static DriveSubsystem INSTANCE = null;
   // create motor controller objects
-  private static WPI_TalonSRX leftPrimary = new WPI_TalonSRX(Constants.CANID_LEFT_PRIMARY);
-  private static WPI_TalonSRX rightPrimary = new WPI_TalonSRX(Constants.CANID_RIGHT_PRIMARY);
-  private static WPI_TalonSRX leftSecondary = new WPI_TalonSRX(Constants.CANID_LEFT_SECONDARY);
-  private static WPI_TalonSRX rightSecondary = new WPI_TalonSRX(Constants.CANID_RIGHT_SECONDARY);
-  private static DifferentialDrive driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
+  private static WPI_TalonSRX leftPrimary;
+  private static WPI_TalonSRX rightPrimary;
+  private static WPI_TalonSRX leftSecondary;
+  private static WPI_TalonSRX rightSecondary;
+  private static DifferentialDrive driveTrain;
   // create a speed controller group for each side
 
   // create a drive train group with the speed controller groups
-
-
-  public DriveSubsystem() {
-    // set one motor on each side inverted so we dont destroy the gearbox
-
-    // leftSecondary.setInverted(true);
-    // rightSecondary.setInverted(true);
-
-    // configure following of primary motors by secondary motors
-    leftSecondary.follow(leftPrimary);
-    rightSecondary.follow(rightPrimary);
-  }
 
   public void periodic() {
 
@@ -43,4 +32,30 @@ public class DriveSubsystem extends SubsystemBase {
   public void setMotors(double leftSpeed, double rightSpeed, double driveSpeed) {
     driveTrain.arcadeDrive(leftSpeed * driveSpeed, rightSpeed * -driveSpeed);
   }
+
+  public static DriveSubsystem getInstance () {
+    if (INSTANCE==null) {
+       INSTANCE = new DriveSubsystem();
+       return INSTANCE;
+    }
+    else {
+       return INSTANCE;
+    }
+ }
+
+ private DriveSubsystem () {
+  leftPrimary = new WPI_TalonSRX(Constants.CANID_LEFT_PRIMARY);
+  rightPrimary = new WPI_TalonSRX(Constants.CANID_RIGHT_PRIMARY);
+  leftSecondary = new WPI_TalonSRX(Constants.CANID_LEFT_SECONDARY);
+  rightSecondary = new WPI_TalonSRX(Constants.CANID_RIGHT_SECONDARY);
+  driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
+    // set one motor on each side inverted so we dont destroy the gearbox
+
+    // leftSecondary.setInverted(true);
+    // rightSecondary.setInverted(true);
+
+    // configure following of primary motors by secondary motors
+    leftSecondary.follow(leftPrimary);
+    rightSecondary.follow(rightPrimary);
+ }
 }

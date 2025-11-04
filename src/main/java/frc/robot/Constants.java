@@ -27,6 +27,7 @@ public final class Constants {
 
     // Speed for the drivebase
     public static final Double DRIVE_SPEED = .6;
+    public static final Double SAFE_DRIVE_SPEED = .3;
 
     // Joystick
     // this tells which port of the driver station the joystick is in
