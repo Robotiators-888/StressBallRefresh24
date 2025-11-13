@@ -2,13 +2,16 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexSubsystem extends SubsystemBase{
     private static IndexSubsystem INSTANCE = null;
-    private WPI_TalonSRX Index;
+    private SparkMax Index;
     private DigitalInput BannerSensor;
     
     public void setIndexSpeed(double speed){
@@ -48,6 +51,6 @@ public class IndexSubsystem extends SubsystemBase{
      }
      private IndexSubsystem () {
         BannerSensor = new DigitalInput(Constants.DIO_BANNER_INPUT);
-        Index  = new WPI_TalonSRX(Constants.CANID_INDEX_MOTOR);
+        Index  = new SparkMax(Constants.CANID_INDEX_MOTOR,MotorType.kBrushed);
      }
 }

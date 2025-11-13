@@ -39,6 +39,6 @@ public class ShooterSubsystem extends SubsystemBase {
    }
 
    private ShooterSubsystem () {
-      FlywheelMotor = new SparkMax(Constants.CANID_SHOOT_MOTOR,MotorType.kBrushed);
+      FlywheelMotor = new SparkMax(Constants.CANID_SHOOT_MOTOR,MotorType.kBrushless);
    }
 }
