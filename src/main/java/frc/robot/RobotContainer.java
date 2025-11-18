@@ -100,7 +100,7 @@ public class RobotContainer {
         }
 
         void toggleSpeed() {
-                if (CurrentSpeed == Constants.DRIVE_SPEED) { CurrentSpeed = Constants.SAFE_DRIVE_SPEED; } else { CurrentSpeed = Constants.SAFE_DRIVE_SPEED;} 
+                if (CurrentSpeed == Constants.DRIVE_SPEED) { CurrentSpeed = Constants.SAFE_DRIVE_SPEED; } else { CurrentSpeed = Constants.DRIVE_SPEED;} 
         }
 
         public Command getAutonomousCommand() {
