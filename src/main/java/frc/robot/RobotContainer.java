@@ -105,6 +105,11 @@ public class RobotContainer {
 
         public Command getAutonomousCommand() {
                 // return autoChooser.getSelected();
-                return new RunCommand(() -> driveSubsystem.setMotors(1,1,Constants.DRIVE_SPEED),driveSubsystem);
+                // return new RunCommand(() -> driveSubsystem.setMotors(-1,1,Constants.DRIVE_SPEED),driveSubsystem);
+                // line above is for spin, not donut
+                // return new ParallelCommandGroup(new RunCommand(() -> shooterSubsystem.flywheelSpeed(-.4),shooterSubsystem), new RunCommand(() -> indexSubsystem.setIndexSpeed(.2),indexSubsystem ),new RunCommand(() -> driveSubsystem.setMotors(-.4,.4,Constants.DRIVE_SPEED),driveSubsystem));
+                // line above is for is for shoot and spin
+                return new ParallelCommandGroup(new RunCommand(() -> shooterSubsystem.flywheelSpeed(-.4),shooterSubsystem), new RunCommand(() -> indexSubsystem.setIndexSpeed(.2),indexSubsystem ),new RunCommand(() -> driveSubsystem.setMotors(.2,.5,Constants.DRIVE_SPEED),driveSubsystem));
+                // line above is for donuts and shoot
         }
 }
