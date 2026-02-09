@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
-
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -9,10 +9,10 @@ import frc.robot.Constants;
 public class DriveSubsystem extends SubsystemBase {
   private static DriveSubsystem INSTANCE = null;
   // create motor controller objects
-  private static WPI_TalonSRX leftPrimary;
-  private static WPI_TalonSRX rightPrimary;
-  private static WPI_TalonSRX leftSecondary;
-  private static WPI_TalonSRX rightSecondary;
+  private static WPI_VictorSPX leftPrimary;
+  private static WPI_VictorSPX rightPrimary;
+  private static WPI_VictorSPX leftSecondary;
+  private static WPI_VictorSPX rightSecondary;
   private static DifferentialDrive driveTrain;
   // create a speed controller group for each side
 
@@ -44,10 +44,10 @@ public class DriveSubsystem extends SubsystemBase {
  }
 
  private DriveSubsystem () {
-  leftPrimary = new WPI_TalonSRX(Constants.CANID_LEFT_PRIMARY);
-  rightPrimary = new WPI_TalonSRX(Constants.CANID_RIGHT_PRIMARY);
-  leftSecondary = new WPI_TalonSRX(Constants.CANID_LEFT_SECONDARY);
-  rightSecondary = new WPI_TalonSRX(Constants.CANID_RIGHT_SECONDARY);
+  leftPrimary = new WPI_VictorSPX(Constants.CANID_LEFT_PRIMARY);
+  rightPrimary = new WPI_VictorSPX(Constants.CANID_RIGHT_PRIMARY);
+  leftSecondary = new WPI_VictorSPX(Constants.CANID_LEFT_SECONDARY);
+  rightSecondary = new WPI_VictorSPX(Constants.CANID_RIGHT_SECONDARY);
   driveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
     // set one motor on each side inverted so we dont destroy the gearbox
 
